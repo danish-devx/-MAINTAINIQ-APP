@@ -302,7 +302,10 @@ window.generateAssetQR = function(id) {
 
     qrCanvas.innerHTML = "";
 
-    const publicUrl = `${window.location.origin}/public-asset.html?id=${asset.id}`;
+    // const publicUrl = `${window.location.origin}/public-asset.html?id=${asset.id}`;
+    const publicUrl = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+    ? `${window.location.origin}/public-asset.html?id=${asset.id}`
+    : `${window.location.origin}/-MAINTAINIQ-APP/public-asset.html?id=${asset.id}`;
     currentPublicUrl = publicUrl;
 
     new QRCode(qrCanvas, {
