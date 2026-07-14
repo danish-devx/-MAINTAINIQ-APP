@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaintainIQ - Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Orbitron:wght@700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="theme.css">
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme Layout"></button>
+
+    <div class="portal-container">
+
+        <div class="showcase-side">
+            <div class="scene-3d">
+                <div class="orbit-ring ring-1"></div>
+                <div class="orbit-ring ring-2"></div>
+                <div class="cube-wrapper">
+                    <div class="cube">
+                        <div class="cube-face face-front"></div>
+                        <div class="cube-face face-back"></div>
+                        <div class="cube-face face-right"></div>
+                        <div class="cube-face face-left"></div>
+                        <div class="cube-face face-top"></div>
+                        <div class="cube-face face-bottom"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="showcase-info">
+                <h2>MaintainIQ</h2>
+                <p>AI-powered QR maintenance and asset history platform. Scan. Report. Diagnose. Maintain.</p>
+            </div>
+        </div>
+
+
+        <div class="form-side">
+
+            <div class="form-wrapper">
+
+                <div class="form-view login-mode">
+                    <div class="form-header">
+                        <h1>Welcome Back</h1>
+                        <p>Sign in to your MaintainIQ workspace</p>
+                    </div>
+                    <form id="login-form">
+                        <div class="input-group">
+                            <svg class="input-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M16 12a4 4 0 11-8 0 4 4 0 018 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207">
+                                </path>
+                            </svg>
+                            <input type="email" id="login-email" placeholder=" " required autocomplete="off">
+                            <label for="login-email">Email Address</label>
+                        </div>
+                        <div class="input-group">
+                            <svg class="input-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                                </path>
+                            </svg>
+                            <input type="password" id="login-password" placeholder=" " required>
+                            <label for="login-password">Password</label>
+                            <button type="button" class="toggle-password" id="togglePassword"
+                                aria-label="Show password">
+                                <svg class="icon-eye" viewBox="0 0 24 24">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                                <svg class="icon-eye-off" viewBox="0 0 24 24">
+                                    <path
+                                        d="M17.94 17.94A10.94 10.94 0 0112 20c-7 0-11-8-11-8a20.4 20.4 0 015.06-6.06M9.9 4.24A10.4 10.4 0 0112 4c7 0 11 8 11 8a20.5 20.5 0 01-3.22 4.44M14.12 14.12a3 3 0 11-4.24-4.24">
+                                    </path>
+                                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Login to Dashboard</button>
+                    </form>
+
+                    <div class="demo-accounts">
+                        <div class="demo-accounts-title">Demo Accounts</div>
+                        <div class="demo-accounts-list">
+                            <button type="button" class="demo-account-btn" data-email="admin@maintainiq.com"
+                                data-password="Admin&123">
+                                <span class="demo-role admin">Admin</span>
+                                <span class="demo-email">admin@maintainiq.com</span>
+                            </button>
+                            <button type="button" class="demo-account-btn" data-email="aliraza@maintainiq.com"
+                                data-password="tech&123">
+                                <span class="demo-role tech">Technician</span>
+                                <span class="demo-email">aliraza@maintainiq.com</span>
+                            </button>
+                            <button type="button" class="demo-account-btn" data-email="bilalahmed@maintainiq.com"
+                                data-password="tech&123">
+                                <span class="demo-role tech">Technician</span>
+                                <span class="demo-email">bilalahmed@maintainiq.com</span>
+                            </button>
+                            <button type="button" class="demo-account-btn" data-email="hamzakhan@maintainiq.com"
+                                data-password="tech&123">
+                                <span class="demo-role tech">Technician</span>
+                                <span class="demo-email">hamzakhan@maintainiq.com</span>
+                            </button>
+                            <button type="button" class="demo-account-btn" data-email="usmantariq@maintainiq.com"
+                                data-password="tech&123">
+                                <span class="demo-role tech">Technician</span>
+                                <span class="demo-email">usmantariq@maintainiq.com</span>
+                            </button>
+                        </div>
+                        <div class="demo-accounts-hint">Tap an account to autofill · password shown on tap</div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+    <script>
+        const togglePasswordBtn = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('login-password');
+
+        togglePasswordBtn.addEventListener('click', () => {
+            const isPassword = passwordInput.type === 'password';
+            passwordInput.type = isPassword ? 'text' : 'password';
+            togglePasswordBtn.classList.toggle('showing', isPassword);
+            togglePasswordBtn.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+        });
+
+        document.querySelectorAll('.demo-account-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const email = btn.getAttribute('data-email');
+                const password = btn.getAttribute('data-password');
+                const emailInput = document.getElementById('login-email');
+                const passwordInput = document.getElementById('login-password');
+
+                emailInput.value = email;
+                passwordInput.value = password;
+
+              
+                emailInput.dispatchEvent(new Event('input'));
+                passwordInput.dispatchEvent(new Event('input'));
+
+                document.querySelectorAll('.demo-account-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+    </script>
+</body>
+
+</html>

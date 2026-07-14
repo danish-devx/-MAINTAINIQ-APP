@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaintainIQ - Technician Console</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Orbitron:wght@700;900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <link rel="stylesheet" href="theme.css">
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="technician.css">
+</head>
+
+<body>
+
+
+    <header class="dashboard-navbar">
+        <div class="nav-left-cluster">
+            <button id="sidebar-toggle-btn" class="sidebar-toggle-btn" aria-label="Toggle Navigation">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+            <div class="nav-brand">
+                <span class="brand-logo" style="text-shadow: var(--neon-glow);">▲</span>
+                <span class="brand-text">MAINTAINIQ TECH</span>
+            </div>
+        </div>
+
+        <div class="nav-actions">
+            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme"></button>
+            <button id="logout-btn" class="logout-action-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2"
+                    stroke="currentColor" class="logout-icon">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />
+                </svg>
+                <span>Log Out</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="dashboard-wrapper">
+
+        <aside id="dashboard-sidebar" class="dashboard-sidebar">
+            <div class="sidebar-menu">
+                <a href="#" class="sidebar-item active">
+                    <svg class="item-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M11.42 15.17L17.25 21A1.79 1.79 0 1020 18.25l-5.83-5.83m-2.75 2.75a7.25 7.25 0 1110.25-10.25 7.25 7.25 0 01-10.25 10.25zm-5.07-5.07L1.25 3A1.79 1.79 0 114 1.25l5.83 5.83M10 13H4.03a1 1 0 00-.97.77l-.6 2.37a1 1 0 001 1.25h5.17" />
+                    </svg>
+                    <span class="item-text">My Work Orders</span>
+                </a>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="status-indicator">
+                    <span class="pulse-dot"></span>
+                    <span class="node-status">Tech Node Active</span>
+                </div>
+                <a href="https://github.com/danish-devx" target="_blank" rel="noopener noreferrer"
+                    class="dev-credit-link">
+                    <svg class="github-icon" viewBox="0 0 16 16" version="1.1" aria-hidden="true">
+                        <path fill="currentColor"
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                        </path>
+                    </svg>
+                    <span>M Danish</span>
+                </a>
+            </div>
+        </aside>
+
+        <main class="dashboard-content">
+            <div class="page-heading">
+                <h1>Technician Dashboard</h1>
+                <p>Logged in as: <span id="tech-name"
+                        style="color: var(--accent-lavender); font-weight: 700;">Loading...</span></p>
+            </div>
+
+
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon-wrap open">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 9v3.75m0 3.75h.008v.008H12V16.5Z" />
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Assigned Issues</span>
+                        <span class="stat-value" id="stat-assigned">0</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon-wrap critical">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21" />
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">In Progress</span>
+                        <span class="stat-value" id="stat-progress">0</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon-wrap operational">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75" />
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Resolved Tasks</span>
+                        <span class="stat-value" id="stat-resolved">0</span>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="tech-filters-card">
+                <div class="filter-controls">
+                    <div class="search-input-wrap">
+                        <input type="text" id="issue-search" placeholder="Search by Asset name, code or issue...">
+                    </div>
+                    <div class="select-dropdown-wrap">
+                        <select id="filter-status">
+                            <option value="all">All Statuses</option>
+                            <option value="Assigned">Assigned</option>
+                            <option value="Under Inspection">Under Inspection</option>
+                            <option value="Under Maintenance">Under Maintenance</option>
+                            <option value="Resolved">Resolved</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="admin-panel-card" style="margin-top: 24px;">
+                <h2 class="panel-title" style="margin-bottom: 20px;">Assigned Work Orders</h2>
+                <div id="issues-grid" class="tech-issues-grid">
+                    <div class="empty-row">Loading tasks and sync details...</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+
+    <div id="action-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="panel-title" id="modal-title">Update Issue Progress</h3>
+                <button id="close-modal-btn" class="close-btn">&times;</button>
+            </div>
+            <form id="action-form">
+                <input type="hidden" id="modal-issue-id">
+                <input type="hidden" id="modal-asset-id">
+
+                <div class="form-group">
+                    <label for="modal-status">Current Work Status</label>
+                    <select id="modal-status" required>
+                        <option value="Under Inspection">Under Inspection</option>
+                        <option value="Under Maintenance">Under Maintenance</option>
+                        <option value="Resolved">Resolved</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="modal-notes">Technician Update Notes</label>
+                    <textarea id="modal-notes" rows="3"
+                        placeholder="Describe the current inspection findings or fix actions..." required></textarea>
+                </div>
+
+                <div id="resolution-fields" class="hidden-fields">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="modal-parts">Parts Replaced</label>
+                            <input type="text" id="modal-parts" placeholder="e.g. SSD, Screen">
+                        </div>
+                        <div class="form-group">
+                            <label for="modal-cost">Cost (PKR)</label>
+                            <input type="number" id="modal-cost" placeholder="0" min="0">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="modal-evidence">Resolution Evidence (Upload Photo)</label>
+                        <input type="file" id="modal-evidence" accept="image/*">
+                        <div id="upload-progress-bar" class="progress-bar-container" style="display: none;">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" id="cancel-modal-btn" class="btn-secondary">Cancel</button>
+                    <button type="submit" class="btn-primary">Update Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="technician.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const toggleBtn = document.getElementById("sidebar-toggle-btn");
+            const sidebar = document.getElementById("dashboard-sidebar");
+            if (toggleBtn && sidebar) {
+                toggleBtn.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    sidebar.classList.toggle("mobile-open");
+                });
+                document.addEventListener("click", (e) => {
+                    if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+                        sidebar.classList.remove("mobile-open");
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

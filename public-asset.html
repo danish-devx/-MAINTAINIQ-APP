@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaintainIQ - Asset Info</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Orbitron:wght@700;900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="theme.css">
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="public-asset.css">
+</head>
+
+<body>
+
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme"></button>
+
+    <div class="public-page-wrapper">
+
+        <div class="public-brand">
+            <span class="brand-logo">▲</span>
+            <span class="brand-text">MAINTAINIQ</span>
+        </div>
+
+        <div id="loading-state" class="state-card">
+            <span class="spinner"></span>
+            <p>Loading asset record...</p>
+        </div>
+
+        <div id="not-found-state" class="state-card" style="display:none;">
+            <div class="not-found-icon">!</div>
+            <h2>Asset Not Found</h2>
+            <p>This QR code doesn't match any registered asset in the system.</p>
+        </div>
+
+        <div id="asset-content" style="display:none;">
+
+            <div class="asset-info-card">
+                <div class="asset-info-header">
+                    <div>
+                        <h1 id="asset-name">--</h1>
+                        <span id="asset-code" class="asset-code-tag">--</span>
+                    </div>
+                    <span id="asset-status" class="status-pill">--</span>
+                </div>
+
+                <div class="asset-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Category</span>
+                        <span id="asset-category" class="info-value">--</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Location</span>
+                        <span id="asset-location" class="info-value">--</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Condition</span>
+                        <span id="asset-condition" class="info-value">--</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Last Service</span>
+                        <span id="asset-last-service" class="info-value">--</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Next Service</span>
+                        <span id="asset-next-service" class="info-value">--</span>
+                    </div>
+                </div>
+
+                <button id="report-issue-btn" class="report-issue-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+                    </svg>
+                    <span>Report an Issue</span>
+                </button>
+            </div>
+
+            <div class="asset-info-card">
+                <h3 class="section-title">Activity History</h3>
+                <div id="history-timeline" class="history-timeline">
+                    <p class="empty-text">No activity recorded yet.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+  
+    <div id="report-modal" class="custom-modal-overlay">
+        <div class="custom-modal">
+            <div class="modal-header">
+                <h2>Report an Issue</h2>
+                <button id="close-report-modal-btn" class="close-modal-btn">&times;</button>
+            </div>
+            <form id="report-form" class="modal-form">
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" id="reporter-name" placeholder="e.g., Ahmed (Student)" required>
+                </div>
+                <div class="form-group">
+                    <label>Describe the Problem</label>
+                    <textarea id="issue-description" rows="4"
+                        placeholder="e.g., The projector display is flickering and sometimes does not detect HDMI."
+                        required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Priority</label>
+                    <select id="issue-priority" required>
+                        <option value="Low">Low</option>
+                        <option value="Medium" selected>Medium</option>
+                        <option value="High">High</option>
+                        <option value="Critical">Critical</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" id="cancel-report-btn" class="secondary-btn">Cancel</button>
+                    <button type="submit" class="primary-btn">Submit Report</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="public-asset.js"></script>
+</body>
+
+</html>

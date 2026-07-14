@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaintainIQ - Asset Management</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Orbitron:wght@700;900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="theme.css">
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="assets.css">
+</head>
+
+<body>
+
+    <header class="dashboard-navbar">
+        <div class="nav-left-cluster">
+            <button id="sidebar-toggle-btn" class="sidebar-toggle-btn" aria-label="Toggle Navigation">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+            <div class="nav-brand">
+                <span class="brand-logo">▲</span>
+                <span class="brand-text">MAINTAINIQ ADMIN</span>
+            </div>
+        </div>
+
+        <div class="nav-actions">
+            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme"></button>
+            <button id="logout-btn" class="logout-action-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2"
+                    stroke="currentColor" class="logout-icon">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />
+                </svg>
+                <span>Log Out</span>
+            </button>
+        </div>
+    </header>
+
+
+    <div class="dashboard-wrapper">
+      
+        <aside id="dashboard-sidebar" class="dashboard-sidebar">
+            <div class="sidebar-menu">
+                <a href="admin.html" class="sidebar-item">
+                    <svg class="item-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" />
+                    </svg>
+                    <span class="item-text">Dashboard</span>
+                </a>
+                <a href="assets.html" class="sidebar-item active">
+                    <svg class="item-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M20.25 7.5l-8.25-4.5L3.75 7.5m16.5 0-8.25 4.5m8.25-4.5v9l-8.25 4.5M3.75 7.5l8.25 4.5m-8.25-4.5v9l8.25 4.5m0-9v9" />
+                    </svg>
+                    <span class="item-text">Assets</span>
+                </a>
+                <a href="issues.html" class="sidebar-item">
+                    <svg class="item-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+                    </svg>
+                    <span class="item-text">Issues</span>
+                </a>
+                <a href="team.html" class="sidebar-item">
+                    <svg class="item-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+                    </svg>
+                    <span class="item-text">Team</span>
+                </a>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="status-indicator">
+                    <span class="pulse-dot"></span>
+                    <span class="node-status">Admin Node Active</span>
+                </div>
+                <a href="https://github.com/danish-devx" target="_blank" rel="noopener noreferrer"
+                    class="dev-credit-link">
+                    <svg class="github-icon" viewBox="0 0 16 16" version="1.1" aria-hidden="true">
+                        <path fill="currentColor"
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                        </path>
+                    </svg>
+                    <span>M Danish</span>
+                </a>
+            </div>
+        </aside>
+
+      
+        <main class="dashboard-content">
+            <div class="page-heading-row">
+                <div class="page-heading">
+                    <h1>Asset Management</h1>
+                    <p>Register, track, edit, and generate QR codes for company assets.</p>
+                </div>
+                <button id="open-register-modal-btn" class="primary-action-btn">
+                    <span class="btn-icon">+</span> Register New Asset
+                </button>
+            </div>
+
+          
+            <section class="filters-panel">
+                <div class="search-input-wrapper">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.604 10.604Z" />
+                    </svg>
+                    <input type="text" id="asset-search-input" placeholder="Search by name, code or location...">
+                </div>
+                <div class="filter-dropdowns">
+                    <select id="filter-category" class="filter-select">
+                        <option value="">All Categories</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Furniture">Furniture</option>
+                        <option value="HVAC">HVAC / Cooling</option>
+                        <option value="Plumbing">Plumbing</option>
+                        <option value="Machinery">Machinery</option>
+                    </select>
+                    <select id="filter-status" class="filter-select">
+                        <option value="">All Statuses</option>
+                        <option value="Operational">Operational</option>
+                        <option value="Issue Reported">Issue Reported</option>
+                        <option value="Under Inspection">Under Inspection</option>
+                        <option value="Under Maintenance">Under Maintenance</option>
+                        <option value="Out of Service">Out of Service</option>
+                        <option value="Retired">Retired</option>
+                    </select>
+                </div>
+            </section>
+
+         
+            <section class="assets-grid-container" id="assets-grid">
+              
+                <div class="loading-placeholder">
+                    <span class="spinner"></span>
+                    <p>Fetching company assets from node...</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+  
+    <div id="asset-modal" class="custom-modal-overlay">
+        <div class="custom-modal">
+            <div class="modal-header">
+                <h2 id="modal-title">Register New Asset</h2>
+                <button id="close-modal-btn" class="close-modal-btn">&times;</button>
+            </div>
+            <form id="asset-form" class="modal-form">
+                <input type="hidden" id="asset-id-input">
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="asset-code">Asset Code (Unique)*</label>
+                        <input type="text" id="asset-code" placeholder="e.g., AC-M-01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="asset-name">Asset Name*</label>
+                        <input type="text" id="asset-name" placeholder="e.g., Split AC 1.5 Ton" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="asset-category">Category*</label>
+                        <select id="asset-category" required>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Furniture">Furniture</option>
+                            <option value="HVAC">HVAC / Cooling</option>
+                            <option value="Plumbing">Plumbing</option>
+                            <option value="Machinery">Machinery</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="asset-location">Location*</label>
+                        <input type="text" id="asset-location" placeholder="e.g., Lab 03, 2nd Floor" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="asset-condition">Condition*</label>
+                        <select id="asset-condition" required>
+                            <option value="Excellent">Excellent</option>
+                            <option value="Good">Good</option>
+                            <option value="Fair">Fair</option>
+                            <option value="Poor">Poor</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="asset-status">Status*</label>
+                        <select id="asset-status" required>
+                            <option value="Operational">Operational</option>
+                            <option value="Issue Reported">Issue Reported</option>
+                            <option value="Under Inspection">Under Inspection</option>
+                            <option value="Under Maintenance">Under Maintenance</option>
+                            <option value="Out of Service">Out of Service</option>
+                            <option value="Retired">Retired</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="last-service">Last Service Date</label>
+                        <input type="date" id="last-service">
+                    </div>
+                    <div class="form-group">
+                        <label for="next-service">Next Service Date</label>
+                        <input type="date" id="next-service">
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" id="cancel-modal-btn" class="secondary-btn">Cancel</button>
+                    <button type="submit" id="save-asset-btn" class="primary-btn">Save Asset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+  
+    <div id="qr-modal" class="custom-modal-overlay">
+        <div class="custom-modal qr-card-modal">
+            <div class="modal-header">
+                <h2>Asset QR Identity Card</h2>
+                <button id="close-qr-modal-btn" class="close-modal-btn">&times;</button>
+            </div>
+
+          
+            <div class="qr-print-label-card" id="printable-label">
+                <div class="label-header">
+                    <h3>MAINTAINIQ</h3>
+                    <span id="label-org-node">OFFICIAL NODE</span>
+                </div>
+                <div class="label-body">
+                    <div class="label-details">
+                        <h4 id="label-asset-name">Asset Name</h4>
+                        <p><strong>Code:</strong> <span id="label-asset-code">AC-001</span></p>
+                        <p><strong>Location:</strong> <span id="label-asset-location">Room 05</span></p>
+                        <span class="scan-instructions">Scan to report issue or view safe history</span>
+                    </div>
+                    <div class="label-qr-wrapper">
+                        <div id="qr-code-canvas"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-actions qr-actions">
+                <button id="open-public-page-btn" class="secondary-btn">Open Public Page</button>
+                <button id="download-qr-btn" class="secondary-btn">Download Label</button>
+                <button id="print-label-btn" class="primary-btn">Print Label</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- QR Code Generator Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="assets.js"></script>
+</body>
+
+</html>
