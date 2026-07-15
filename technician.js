@@ -51,7 +51,7 @@ const getAlertConfig = (icon, title, text, timer = null) => {
 
 async function checkTechnicianSession() {
     const { data: { session } } = await client.auth.getSession();
-    
+
     if (!session) {
         window.location.href = "index.html";
         return;
@@ -59,7 +59,6 @@ async function checkTechnicianSession() {
 
     currentUser = session.user;
 
-    
     const { data: profile, error } = await client
         .from("profiles")
         .select("name, role")
@@ -79,7 +78,6 @@ async function checkTechnicianSession() {
 
 
 async function fetchTechnicianTasks() {
-   
     const { data, error } = await client
         .from("issues")
         .select(`
@@ -122,10 +120,11 @@ function renderTasks(list) {
         const assetName = issue.assets ? issue.assets.name : "Unknown Asset";
         const assetCode = issue.assets ? issue.assets.unique_code : "N/A";
         const dateCreated = new Date(issue.created_at).toLocaleDateString();
-        
+
+     
         let statusClass = "status-assigned";
-        if (issue.status === "Under Inspection") statusClass = "status-inspection";
-        if (issue.status === "Under Maintenance") statusClass = "status-maintenance";
+        if (issue.status === "Inspection Started") statusClass = "status-inspection";
+        if (issue.status === "Maintenance In Progress") statusClass = "status-maintenance";
         if (issue.status === "Resolved") statusClass = "status-resolved";
 
         return `
@@ -163,7 +162,7 @@ function renderTasks(list) {
 
 function updateStatsDashboard() {
     const assigned = assignedIssues.filter(i => i.status === "Assigned").length;
-    const inProgress = assignedIssues.filter(i => i.status === "Under Inspection" || i.status === "Under Maintenance").length;
+    const inProgress = assignedIssues.filter(i => i.status === "Inspection Started" || i.status === "Maintenance In Progress").length;
     const resolved = assignedIssues.filter(i => i.status === "Resolved").length;
 
     document.getElementById("stat-assigned").textContent = assigned;
@@ -197,8 +196,9 @@ filterStatus.addEventListener("change", runLiveFilters);
 window.openActionModal = function(issueId, assetId, currentStatus) {
     document.getElementById("modal-issue-id").value = issueId;
     document.getElementById("modal-asset-id").value = assetId;
-    statusDropdown.value = currentStatus === "Assigned" ? "Under Inspection" : currentStatus;
-    
+  
+    statusDropdown.value = currentStatus === "Assigned" ? "Inspection Started" : currentStatus;
+
     toggleResolutionFields();
     actionModal.classList.add("active");
 };
@@ -231,17 +231,20 @@ actionForm.addEventListener("submit", async (e) => {
     const assetId = document.getElementById("modal-asset-id").value;
     const selectedStatus = statusDropdown.value;
     const notes = document.getElementById("modal-notes").value.trim();
-    
-    let parts = "";
+
     let costVal = null;
     let evidenceUrlVal = null;
 
     if (selectedStatus === "Resolved") {
-        parts = document.getElementById("modal-parts").value.trim();
         costVal = parseFloat(document.getElementById("modal-cost").value) || 0;
+
+        if (costVal < 0) {
+            Swal.fire(getAlertConfig("error", "Invalid Cost", "Maintenance cost cannot be negative."));
+            return;
+        }
+
         const fileInput = document.getElementById("modal-evidence");
 
-      
         if (fileInput && fileInput.files.length > 0) {
             const file = fileInput.files[0];
             const fileExt = file.name.split('.').pop();
@@ -251,7 +254,7 @@ actionForm.addEventListener("submit", async (e) => {
             if (uploadProgressContainer) uploadProgressContainer.style.display = "block";
             if (uploadProgressBar) uploadProgressBar.style.width = "40%";
 
-            const { data: uploadData, error: uploadError } = await client.storage
+            const { error: uploadError } = await client.storage
                 .from("evidence-bucket")
                 .upload(filePath, file);
 
@@ -271,16 +274,15 @@ actionForm.addEventListener("submit", async (e) => {
         }
     }
 
-    
+   
     const updatePayload = {
         status: selectedStatus,
-        tech_notes: notes 
+        tech_notes: notes
     };
 
     if (selectedStatus === "Resolved") {
-       
-        updatePayload.cost = costVal; 
-        if (evidenceUrlVal) updatePayload.evidence_url = evidenceUrlVal; 
+        updatePayload.cost = costVal;
+        if (evidenceUrlVal) updatePayload.evidence_url = evidenceUrlVal;
     }
 
     const { error: issueError } = await client
@@ -293,10 +295,10 @@ actionForm.addEventListener("submit", async (e) => {
         return;
     }
 
-    
+   
     let assetStatusUpdate = "Operational";
-    if (selectedStatus === "Under Inspection") assetStatusUpdate = "Under Inspection";
-    if (selectedStatus === "Under Maintenance") assetStatusUpdate = "Under Maintenance";
+    if (selectedStatus === "Inspection Started") assetStatusUpdate = "Under Inspection";
+    if (selectedStatus === "Maintenance In Progress") assetStatusUpdate = "Under Maintenance";
 
     const { error: assetError } = await client
         .from("assets")
@@ -307,13 +309,17 @@ actionForm.addEventListener("submit", async (e) => {
         console.error("Failed syncing asset status updates:", assetError);
     }
 
-   
-    await client.from("asset_history").insert([{
+  
+    const { error: historyError } = await client.from("asset_history").insert([{
         asset_id: assetId,
         action: `Issue ${selectedStatus}`,
         actor_name: technicianName,
-        notes: notes
+        issue_id: issueId
     }]);
+
+    if (historyError) {
+        console.error("Failed to log asset history:", historyError);
+    }
 
     Swal.fire(getAlertConfig("success", "Success", `Status updated successfully to ${selectedStatus}!`, 1500));
     closeModal();
@@ -323,7 +329,7 @@ actionForm.addEventListener("submit", async (e) => {
 
 document.getElementById("logout-btn").addEventListener("click", async () => {
     const swalConfig = getAlertConfig('warning', 'Confirm Logout', 'Are you sure you want to end your active session?');
-    
+
     swalConfig.showCancelButton = true;
     swalConfig.confirmButtonText = 'Yes, Log Out';
     swalConfig.cancelButtonText = 'Cancel';
