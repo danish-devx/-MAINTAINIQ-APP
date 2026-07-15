@@ -252,7 +252,7 @@ actionForm.addEventListener("submit", async (e) => {
             if (uploadProgressBar) uploadProgressBar.style.width = "40%";
 
             const { data: uploadData, error: uploadError } = await client.storage
-                .from("issues-evidence")
+                .from("evidence-bucket")
                 .upload(filePath, file);
 
             if (uploadError) {
@@ -264,7 +264,7 @@ actionForm.addEventListener("submit", async (e) => {
             if (uploadProgressBar) uploadProgressBar.style.width = "100%";
 
             const { data: { publicUrl } } = client.storage
-                .from("issues-evidence")
+                .from("evidence-bucket")
                 .getPublicUrl(filePath);
 
             evidenceUrlVal = publicUrl;
