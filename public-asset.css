@@ -411,3 +411,19 @@ body {
     .asset-info-grid { grid-template-columns: 1fr; }
     .asset-info-card { padding: 20px; }
 }
+
+
+.form-group select option,
+.filter-select option {
+    background-color: #12121d !important; 
+    color: #ffffff !important;
+}
+
+
+body.light-theme .form-group select option,
+body.light-theme .filter-select option,
+.light-mode .form-group select option,
+.light-mode .filter-select option {
+    background-color: #ffffff !important; 
+    color: #1a202c !important;
+}
