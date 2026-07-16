@@ -165,6 +165,18 @@ window.openIssueModal = function (id) {
     const issue = loadedIssues.find(i => i.id === id);
     if (!issue) return;
 
+    const evidenceWrap = document.getElementById("issue-evidence-wrap");
+    const evidenceImg = document.getElementById("issue-evidence-img");
+    const evidenceLink = document.getElementById("issue-evidence-link");
+
+    if (issue.evidence_url) {
+        evidenceImg.src = issue.evidence_url;
+        evidenceLink.href = issue.evidence_url;
+        evidenceWrap.style.display = "block";
+    } else {
+        evidenceWrap.style.display = "none";
+    }
+
     document.getElementById("issue-id-input").value = issue.id;
     document.getElementById("issue-view-number").textContent = issue.issue_number || "ISS-----";
     document.getElementById("issue-view-asset").textContent = issue.assets ? issue.assets.name : "Unknown Asset";
