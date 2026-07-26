@@ -5,7 +5,8 @@
 > Scan. Report. Diagnose. Maintain.
 
 **🔗 Live Demo:** [https://danish-devx.github.io/-MAINTAINIQ-APP/](https://danish-devx.github.io/-MAINTAINIQ-APP/)
-
+---
+**🔗 Live Demo:** [https://maintainiq-app.vercel.app/](https://maintainiq-app.vercel.app/)
 ---
 
 ## 📌 About The Project
