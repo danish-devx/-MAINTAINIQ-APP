@@ -303,9 +303,25 @@ window.generateAssetQR = function(id) {
     qrCanvas.innerHTML = "";
 
     // const publicUrl = `${window.location.origin}/public-asset.html?id=${asset.id}`;
-    const publicUrl = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
-    ? `${window.location.origin}/public-asset.html?id=${asset.id}`
-    : `${window.location.origin}/-MAINTAINIQ-APP/public-asset.html?id=${asset.id}`;
+    // const publicUrl = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+    // ? `${window.location.origin}/public-asset.html?id=${asset.id}`
+    // : `${window.location.origin}/-MAINTAINIQ-APP/public-asset.html?id=${asset.id}`;
+    // currentPublicUrl = publicUrl;
+
+    const hostname = window.location.hostname;
+    let publicUrl = "";
+
+    if (hostname === "localhost" || hostname === "127.0.0.1") {
+
+        publicUrl = `${window.location.origin}/public-asset.html?id=${asset.id}`;
+    } else if (hostname.includes("github.io")) {
+ 
+         publicUrl = `${window.location.origin}/-MAINTAINIQ-APP/public-asset.html?id=${asset.id}`;
+    } else {
+ 
+         publicUrl = `${window.location.origin}/public-asset.html?id=${asset.id}`;
+    }
+
     currentPublicUrl = publicUrl;
 
     new QRCode(qrCanvas, {
